@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "CircularXX";
+  src: url(/employer-search/fonts/CircularXXWebLight.woff2) format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: "CircularXX";
+  src: url(/employer-search/fonts/CircularXXWebRegular.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: "CircularXX";
+  src: url(/employer-search/fonts/CircularXXWebMedium.woff2) format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: optional;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #e2e8f0;
+}
+
+.h-screen-fix {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+.h-screen-fix-disable {
+  min-height: auto;
+}
+
+.scrollbar {
+  /* Foreground, Background */
+  scrollbar-color: #9ca3af #f3f4f6;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+  border-radius: 2px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
