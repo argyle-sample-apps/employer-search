@@ -4,6 +4,28 @@ import { LinkItem } from "models/item";
 import { API_BASE_URL } from "utils/const";
 import { fuse, hasMatchIn } from "utils/search";
 
+function unique(items: LinkItem[]) {
+  const map = new Map<string, LinkItem[]>();
+
+  items.forEach((item) => {
+    if (!map.has(item.name)) {
+      map.set(item.name, [item]);
+    } else {
+      map.get(item.name)?.push(item);
+    }
+  });
+
+  const groups = Array.from(map.values());
+  const uniqueItems = groups.map((group) => {
+    if (group.length > 1) {
+      return group.find((item) => item.is_grouping) || group[0];
+    }
+    return group[0];
+  });
+
+  return uniqueItems;
+}
+
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const q = req.query.q as string;
   const url = `${API_BASE_URL}/items?&limit=10&include_missing_integration=false&q=${q}`;
@@ -16,7 +38,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   return fetch(url, getAuthOpts())
     .then((response) => response.json())
     .then((data) => {
-      const supported = data.results
+      const uniqueItems = unique(data.results);
+      const supported = uniqueItems;
         // any kind of logic for filtering or disabling
         // specific LinkItems can be implemented here
 
