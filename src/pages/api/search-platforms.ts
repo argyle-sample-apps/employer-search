@@ -11,7 +11,7 @@ const fallback = {
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const q = req.query.q as string;
-  const baseUrl = `${API_BASE_URL}/items?limit=100&kind=platform`;
+  const baseUrl = `${API_BASE_URL}/employer-search?limit=5&kind=platform`;
   const url = q.length ? baseUrl + `&q=${q}` : baseUrl;
 
   return fetch(url, getAuthOpts())
